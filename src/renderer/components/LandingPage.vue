@@ -31,10 +31,14 @@
 
 <script>
   import SystemInformation from './LandingPage/SystemInformation'
+  import clipboardWatcher from '@/assets/js/watcher'
 
   export default {
     name: 'landing-page',
     components: { SystemInformation },
+    mounted() {
+      clipboardWatcher.addWatcher(text => '!' + text)
+    },
     methods: {
       open (link) {
         require('electron').shell.openExternal(link)

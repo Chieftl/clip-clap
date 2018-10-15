@@ -1,6 +1,6 @@
 {
   "name": "clip-clap",
-  "version": "0.1",
+  "version": "0.0.1",
   "author": "Yuriy Ilkiv <ilkiv.yuriy@gmail.com>",
   "description": "Quick replacer osm data via clipboard",
   "license": null,
@@ -53,6 +53,7 @@
     }
   },
   "dependencies": {
+    "electron-clipboard-extended": "^1.1.1",
     "vue": "^2.5.16"
   },
   "devDependencies": {
