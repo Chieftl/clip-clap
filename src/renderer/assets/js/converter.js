@@ -10,6 +10,10 @@ let convertRules = {
       return val
     },
   },
+  'coords': {
+    'restriction': text => text.match(/-?\d+, ?-?\d+/gm),
+    'convert': text => text.replace(/^(-?\d+).(\d+), ?(-?\d+).(\d+)$/gm, '$1,$2; $3,$4'),
+  },
   'opening_hours': {
     'restriction': text => text.match(/^(mf|ms|ьа|ьі)/gm),
     'convert': val => {
