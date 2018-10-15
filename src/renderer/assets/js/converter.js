@@ -1,4 +1,15 @@
 let convertRules = {
+  'phones': {
+    'restriction': text => text.replace(/[- ()]/g, '').trim().match(/\d{10,}/gm),
+    'convert': val => {
+      //067 123 456 7
+      //067 123 456 7 ; 067 223 456 7
+      let lines = val.split(/[\r\n;]/)
+      lines = lines.map(line => line.trim().replace(/^(0\d{2}) ?/, '+38($1)'))
+      val = lines.join('; ')
+      return val
+    },
+  },
   'opening_hours': {
     'restriction': text => text.match(/^(mf|ms|ьа|ьі)/gm),
     'convert': val => {
