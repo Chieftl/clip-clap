@@ -1,3 +1,9 @@
+let addNotification = msg => {
+  let myNotification = new Notification('Clipboard changed', {
+      body: msg
+    })
+}
+
 const clipboard = require('electron-clipboard-extended')
 
 export default {
@@ -10,6 +16,7 @@ export default {
       if (textNew == text) return
 
       console.log('new text in clipboard: ', textNew)
+      addNotification(`${text}\nwas changed to \n ${textNew}`)
 
       clipboard.off('text-changed')
       clipboard.writeText(textNew)
