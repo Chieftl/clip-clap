@@ -1,12 +1,14 @@
 let convertRules = {
   'opening_hours': {
-    'restriction': text => text.match(/(mf|ms)/gm),
+    'restriction': text => text.match(/^(mf|ms|ьа|ьі)/gm),
     'convert': val => {
       //mf1018u1220
       //ms1018 a 1119 u1220
       //mf10131418u1220
       //mf8181314u920
+      //ьа8181314ф920
       val = val.toLowerCase()
+      val = val.replace(/([ьаіфг])/g, match => 'mfsau'['ьаіфг'.indexOf(match)])
       val = val.replace(/[^a-z0-9]/g, '')
       val = val.replace(/([^s])a/g, '$1Sa')
       val = val.replace(/([^s])u/g, '$1Su')
