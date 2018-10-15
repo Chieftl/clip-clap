@@ -32,12 +32,13 @@
 <script>
   import SystemInformation from './LandingPage/SystemInformation'
   import clipboardWatcher from '@/assets/js/watcher'
+  import clipboardConverter from '@/assets/js/converter'
 
   export default {
     name: 'landing-page',
     components: { SystemInformation },
     mounted() {
-      clipboardWatcher.addWatcher(text => '!' + text)
+      clipboardWatcher.addWatcher(clipboardConverter.convert)
     },
     methods: {
       open (link) {
