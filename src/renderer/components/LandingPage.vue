@@ -1,7 +1,9 @@
 <template>
   <div id="wrapper">
-    <!--<img id="logo" src="~@/assets/logo.png" alt="electron-vue">-->
-    <h1>Clip-clap</h1>
+    <h1>
+      <img id="logo" src="~@/assets/logo.png" alt="electron-vue">
+      Clip-clap
+    </h1>
     <main>
       <div class="left-side">
         <span class="title">
@@ -123,7 +125,8 @@
   #logo {
     height: auto;
     margin-bottom: 20px;
-    width: 420px;
+    max-width: 420px;
+    max-height: 60px;
   }
 
   main {
@@ -178,6 +181,11 @@
   .doc button.alt {
     color: #42b983;
     background-color: transparent;
+  }
+
+  h1 {
+    display: flex;
+    align-items: center;
   }
   
   .convert-rules {
