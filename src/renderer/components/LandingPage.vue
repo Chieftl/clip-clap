@@ -1,15 +1,64 @@
 <template>
   <div id="wrapper">
-    <img id="logo" src="~@/assets/logo.png" alt="electron-vue">
+    <!--<img id="logo" src="~@/assets/logo.png" alt="electron-vue">-->
+    <h1>Clip-clap</h1>
     <main>
       <div class="left-side">
         <span class="title">
-          Welcome to your new project!
+          Instant clipboard converter
         </span>
-        <system-information></system-information>
+        <div>Just copy text to clipboard in any application &amp; it will be converted.</div>
+        <ul class="convert-rules">
+          <li>
+            <h3>Opening hours</h3>
+            <ul>
+              <li>
+                <h4>Simple</h4>
+                mf1018u1220 <span>to</span><br>
+                Mo-Fr 10:00-18:00; Su 12:00-20:00
+              </li>
+              <li>
+                <h4>Saturday, Sunday, spaces</h4>
+                ms1018 a 1119 u1220 <span>to</span><br>
+                Mo-Sa 10:00-18:00; Sa 11:00-19:00; Su 12:00-20:00
+              </li>
+              <li>
+                <h4>Nooning</h4>
+                mf10131418u1220 <span>to</span><br>
+                Mo-Fr 10:00-13:00,14:00-18:00; Su 12:00-20:00
+              </li>
+              <li>
+                <h4>Nooning can be at end</h4>
+                mf8181314 <span>to</span><br>
+                Mo-Fr 08:00-13:00,14:00-18:00
+              </li>
+              <li>
+                <h4>If you forget to change cyrillic keyboard layout</h4>
+                ьа8181314ф920 <span>to</span><br>
+                Mo-Fr 08:00-13:00,14:00-18:00; Sa 09:00-20:00
+              </li>
+            </ul>
+          </li>
+          <li>
+            <h3>Phones</h3>
+            <ul>
+              <li>
+                <h4>Simple phone</h4>
+                067 1234 567 <span>to</span><br>
+                +38(067)1234 567
+              </li>
+              <li>
+                <h4>Multiple phones</h4>
+                067 1234 567 ; 099 2234 567 <span>to</span><br>
+                +38(067)1234 567; +38(099)2234 567
+              </li>
+            </ul>
+          </li>
+        </ul>
+        <!--<system-information></system-information>-->
       </div>
 
-      <div class="right-side">
+      <!--<div class="right-side">
         <div class="doc">
           <div class="title">Getting Started</div>
           <p>
@@ -24,7 +73,7 @@
           <button class="alt" @click="open('https://electron.atom.io/docs/')">Electron</button>
           <button class="alt" @click="open('https://vuejs.org/v2/guide/')">Vue.js</button>
         </div>
-      </div>
+      </div>-->
     </main>
   </div>
 </template>
@@ -82,7 +131,7 @@
     justify-content: space-between;
   }
 
-  main > div { flex-basis: 50%; }
+  /*main > div { flex-basis: 50%; }*/
 
   .left-side {
     display: flex;
@@ -129,5 +178,18 @@
   .doc button.alt {
     color: #42b983;
     background-color: transparent;
+  }
+  
+  .convert-rules {
+    display: flex;
+    width: 100%;
+  }
+  
+  .convert-rules > li {
+    width: 50%;
+  }
+  
+  ul span {
+    color: #999;
   }
 </style>
