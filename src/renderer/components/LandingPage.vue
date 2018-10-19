@@ -1,9 +1,7 @@
 <template>
   <div id="wrapper">
-    <h1>
-      <img id="logo" src="~@/assets/logo.png" alt="electron-vue">
-      Clip-clap
-    </h1>
+    <!--<img id="logo" src="~@/assets/logo.png" alt="electron-vue">-->
+    <h1>Clip-clap</h1>
     <main>
       <div class="left-side">
         <span class="title">
@@ -59,6 +57,12 @@
         </ul>
         <!--<system-information></system-information>-->
       </div>
+      <ul class="log-list">
+        <li v-for="logRow in log">
+          <div class="log-date">{{ logRow.date }}</div>
+          {{ logRow.msg }}
+        </li>
+      </ul>
 
       <!--<div class="right-side">
         <div class="doc">
@@ -87,9 +91,18 @@
 
   export default {
     name: 'landing-page',
+    data() {
+      return {
+        log: [],
+      }
+    },
     components: { SystemInformation },
     mounted() {
-      clipboardWatcher.addWatcher(clipboardConverter.convert)
+      clipboardWatcher.addWatcher(clipboardConverter.convert, (...args) => {
+        let date = (new Date()).toTimeString().substr(0, 8)
+        let msg = args.join('')
+        this.log.push({date, msg})
+      })
     },
     methods: {
       open (link) {
@@ -125,8 +138,7 @@
   #logo {
     height: auto;
     margin-bottom: 20px;
-    max-width: 420px;
-    max-height: 60px;
+    width: 420px;
   }
 
   main {
@@ -182,11 +194,6 @@
     color: #42b983;
     background-color: transparent;
   }
-
-  h1 {
-    display: flex;
-    align-items: center;
-  }
   
   .convert-rules {
     display: flex;
@@ -199,5 +206,19 @@
   
   ul span {
     color: #999;
+  }
+
+  ul.log-list {
+    height: 85vh;
+    overflow-y: scroll;
+  }
+
+  ul.log-list > li {
+    border-bottom: 1px solid silver;
+  }
+
+  ul.log-list > li .log-date {
+    font-size: .9em;
+    color: silver;
   }
 </style>

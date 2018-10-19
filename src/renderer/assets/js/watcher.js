@@ -7,15 +7,18 @@ let addNotification = msg => {
 const clipboard = require('electron-clipboard-extended')
 
 export default {
-  addWatcher(convertFunction) {
+  addWatcher(convertFunction, logFunction) {
     if (typeof convertFunction != 'function') new Error('convertFunction must be a function')
+    if (typeof logFunction != 'function') new Error('convertFunction must be a function')
 
     let clipboardTextTrigger = () => {
       let text = clipboard.readText()
+      logFunction('text:', text)
+
       let textNew = convertFunction(text)
       if (textNew == text) return
 
-      console.log('new text in clipboard: ', textNew)
+      logFunction('new text:', textNew)
       addNotification(`${text}\nwas changed to \n ${textNew}`)
 
       clipboard.off('text-changed')
