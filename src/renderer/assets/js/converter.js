@@ -15,7 +15,7 @@ let convertRules = {
     'convert': text => text.replace(/^(-?\d+).(\d+), ?(-?\d+).(\d+)$/gm, '$1,$2; $3,$4'),
   },
   'opening_hours': {
-    'restriction': text => text.match(/^(mf|ms|ьа|ьі)/gm),
+    'restriction': text => text.match(/^(mf|ms|ьа|ьі) ?\d{4}/gm),
     'convert': val => {
       //mf1018u1220
       //ms1018 a 1119 u1220
