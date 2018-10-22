@@ -1,4 +1,24 @@
 let convertRules = {
+  'flickr': {
+    'restriction': text => text.match(/^https:\/\/www.flickr.com\/photos\/(\d+@N\d+)\/(\d+)/),
+    'convert': text => {
+      //https://www.flickr.com/photos/151135260@N07/37272268660/in/album-72157687344189913/
+      let [, user_id, photo_id] = text.match(/^https:\/\/www.flickr.com\/photos\/(\d+@N\d+)\/(\d+)/)
+      let flickr = `https://www.flickr.com/photos/${user_id}/${photo_id}/`
+
+      let apiKey = '8e36439411e60040b75b5fb7fb952bd7'
+      let apiUrl = `https://api.flickr.com/services/rest/?method=flickr.photos.getSizes&api_key=${apiKey}&photo_id=${photo_id}&format=json&nojsoncallback=1`
+      var request = new XMLHttpRequest();
+      request.open('GET', apiUrl, false);
+      request.send(null);
+      let {sizes: {size}} = JSON.parse(request.responseText)
+
+      let image = size.find(({label}) => label == 'Original').source
+      let EOL = require('os').EOL;
+      let res = `flickr=${flickr}${EOL}image=${image}`
+      return res;
+    }
+  },
   'phones': {
     'restriction': text => text.replace(/[- ()]/g, '').trim().match(/^\d{10,}$/gm),
     'convert': val => {
