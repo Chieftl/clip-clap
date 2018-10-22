@@ -70,6 +70,7 @@ export default {
       if (typeof rule.convert != 'function') new Error('convert must be a function')
 
       if (!rule.restriction(text)) continue
+      console.log('Start rule: ' + ruleName)
       text = rule.convert(text)
     }
     return text
