@@ -1,6 +1,6 @@
 let convertRules = {
   'phones': {
-    'restriction': text => text.replace(/[- ()]/g, '').trim().match(/\d{10,}/gm),
+    'restriction': text => text.replace(/[- ()]/g, '').trim().match(/^\d{10,}$/gm),
     'convert': val => {
       //067 123 456 7
       //067 123 456 7 ; 067 223 456 7
